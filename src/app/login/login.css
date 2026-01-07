@@ -175,8 +175,8 @@
 .btn-signin {
   width: 100%;
   padding: 14px;
-  background-color: #e8e8e8;
-  color: #95a5a6;
+  background-color: #5d87ff;
+  color: #ffffff;
   border: none;
   border-radius: 6px;
   font-size: 15px;
@@ -187,8 +187,10 @@
 }
 
 .btn-signin:hover {
-  background-color: #d5d5d5;
+  background-color: #4a6fd8;
 }
+
+
 
 .signup-link {
   text-align: center;
