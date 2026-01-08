@@ -34,81 +34,6 @@
   margin: 0;
 }
 
-.social-buttons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.social-buttons button {
-  flex: 1;
-  padding: 12px 16px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-
-.btn-google {
-  color: #4285f4;
-}
-
-.btn-google:hover {
-  background-color: #f8f9fa;
-  border-color: #4285f4;
-}
-
-.btn-facebook {
-  color: #1877f2;
-}
-
-.btn-facebook:hover {
-  background-color: #f8f9fa;
-  border-color: #1877f2;
-}
-
-.social-buttons .icon {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.divider {
-  text-align: center;
-  margin: 24px 0;
-  position: relative;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background-color: #e0e0e0;
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
-}
-
-.divider span {
-  background: white;
-  padding: 0 12px;
-  font-size: 13px;
-  color: #95a5a6;
-}
 
 .register-form {
   margin-top: 24px;
@@ -172,7 +97,7 @@
 .btn-register {
   width: 100%;
   padding: 14px;
-  background-color: #5d87ff;
+  background-color: #1B84FF;
   color: white;
   border: none;
   border-radius: 6px;

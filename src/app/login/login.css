@@ -7,6 +7,8 @@
   padding: 20px;
 }
 
+
+
 .login-container {
   background: white;
   padding: 40px;
@@ -56,59 +58,9 @@
   transition: all 0.2s;
 }
 
-.btn-google {
-  color: #4285f4;
-}
 
-.btn-google:hover {
-  background-color: #f8f9fa;
-  border-color: #4285f4;
-}
 
-.btn-facebook {
-  color: #1877f2;
-}
 
-.btn-facebook:hover {
-  background-color: #f8f9fa;
-  border-color: #1877f2;
-}
-
-.social-buttons .icon {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.divider {
-  text-align: center;
-  margin: 24px 0;
-  position: relative;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background-color: #e0e0e0;
-}
-
-.divider::before {
-  left: 0;
-}
-
-.divider::after {
-  right: 0;
-}
-
-.divider span {
-  background: white;
-  padding: 0 12px;
-  font-size: 13px;
-  color: #95a5a6;
-}
 
 .login-form {
   margin-top: 24px;
@@ -175,7 +127,7 @@
 .btn-signin {
   width: 100%;
   padding: 14px;
-  background-color: #5d87ff;
+  background-color: #1B84FF;
   color: #ffffff;
   border: none;
   border-radius: 6px;

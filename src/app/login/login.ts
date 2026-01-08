@@ -19,7 +19,7 @@ export class Login {
 
   login() {
     if (this.username && this.password) {
-      alert('Login successful: ' + this.username);
+      this.router.navigate(['/layout']);
     } else {
       alert('Please enter username and password');
     }
@@ -28,7 +28,7 @@ export class Login {
   
 
   forgotPassword() {
-    alert('Forgot password clicked');
+    
   }
 
   createAccount() {

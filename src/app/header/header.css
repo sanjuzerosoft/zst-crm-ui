@@ -1,0 +1,12 @@
+.main_header{
+    background-color: #1B84FF;
+    width: 100vw;
+    height: auto;
+    padding: 24px;
+}
+
+.logo_text{
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+}
