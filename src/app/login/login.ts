@@ -18,8 +18,9 @@ export class Login {
   constructor(private router: Router) {}
 
   login() {
+    console.log("work");
     if (this.username && this.password) {
-      this.router.navigate(['/layout']);
+      this.router.navigate(['/leads']);
     } else {
       alert('Please enter username and password');
     }

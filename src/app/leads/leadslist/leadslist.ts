@@ -41,6 +41,6 @@ export class Leadslist {
 
   constructor(private router: Router) {}
   AddLeads() {
-    this.router.navigate(['/leadsadd']);
-  }
+  this.router.navigate(['/leads/add']);
+}
 }

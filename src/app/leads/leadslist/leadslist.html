@@ -1,1 +1,67 @@
-<p>leadslist works!</p>
+<div class="wrapper">
+  <div class="container">
+    <div class="header">
+      <!-- Page Header -->
+      <div>
+        <div class="page-title">Leads List - <span class="count">({{ totalLeads }})</span></div>
+      </div>
+
+      <!-- Toolbar -->
+      <div>
+        <div class="toolbar">
+          <div class="search-box">
+            <img src="search.png" alt="Search" class="search-icon" />
+            <input type="text" placeholder="Search leads..." />
+          </div>
+
+          <button class="add-btn" (click)="AddLeads()">
+            <img src="add.png" alt="Add" class="btn-icon" />
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+      <table class="leads-table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let lead of leads">
+            <td>{{ lead.id }}</td>
+            <td>{{ lead.name }}</td>
+            <td>{{ lead.email }}</td>
+            <td>{{ lead.phone }}</td>
+            <td>
+              <span class="status active">{{ lead.status }}</span>
+            </td>
+            <td class="actions">
+              <img
+                src="edit.png"
+                alt="Edit"
+                class="action-icon"
+                (click)="editLead(lead.id)"
+              />
+              <img
+                src="delete.png"
+                alt="Delete"
+                class="action-icon delete"
+                (click)="deleteLead(lead.id)"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
