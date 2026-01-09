@@ -5,7 +5,7 @@ import { Header } from '../../header/header';
 
 @Component({
   selector: 'app-leadslist',
-  imports: [CommonModule,Header],
+  imports: [CommonModule],
   templateUrl: './leadslist.html',
   styleUrl: './leadslist.css',
 })

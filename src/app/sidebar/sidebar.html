@@ -1,96 +1,62 @@
-<div class="main_side min-h-screen h-full w-20 md:w-24 lg:w-64 xl:w-72 p-3 md:p-4 lg:p-5 shadow-[0_2px_8px_rgba(0,0,0,0.18)]">
-
-    <div>
-        <div class="hidden lg:block text-black text-2xl font-semibold text-center mt-5">
-            Welcome Sanju!
-        </div>
-
-        <div class="lg:hidden text-black text-2xl font-bold text-center mt-2">
-            S
-        </div>
-
-        <div class="flex flex-col gap-2 p-2 lg:p-4 mt-5 lg:mt-8">
-
-            <div class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
-                [ngClass]="{
-    'bg-[#ff0000] text-white': activeMenu === 'dashboard'
-  }" (click)="setActive('dashboard')">
-                <div class="flex-shrink-0 my-1.5">
-                    
-                    <img *ngIf="activeMenu !== 'dashboard'" src="dashboard.png" class="h-6 w-6 block"
-                        alt="Dashboard" />
-                    
-                    <img *ngIf="activeMenu === 'dashboard'" src="whitedashboards.png" class="h-6 w-6 block"
-                        alt="Dashboard Active" />
-                </div>
-                <div class="hidden lg:block my-1.5">Dashboard</div>
-            </div>
-
-
-            <!-- Leads -->
-            <div class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
-                [ngClass]="{
-      'bg-[#ff0000] text-white': activeMenu === 'leads'
-    }" (click)="setActive('leads')">
-                <div class="flex-shrink-0 my-1.5">
-                    
-                    <img *ngIf="activeMenu !== 'leads'" src="leads.png" class="h-6 w-6 block" alt="leads" />
-                    
-                    <img *ngIf="activeMenu === 'leads'" src="whiteleads.png" class="h-6 w-6 block"
-                        alt="leads Active" />
-                </div>
-                <div class="hidden lg:block my-1.5">Leads</div>
-            </div>
-
-            <!-- Customers -->
-            <div class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
-                [ngClass]="{
-      'bg-[#ff0000] text-white': activeMenu === 'customers'
-    }" (click)="setActive('customers')">
-                <div class="flex-shrink-0 my-1.5">
-                    
-                    <img *ngIf="activeMenu !== 'customers'" src="customers.png" class="h-6 w-6 block"
-                        alt="customers" />
-                    
-                    <img *ngIf="activeMenu === 'customers'" src="whitecustomers.png" class="h-6 w-6 block"
-                        alt="customers Active" />
-                </div>
-                <div class="hidden lg:block my-1.5">Customers</div>
-            </div>
-
-            <!-- Activities -->
-            <div class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
-                [ngClass]="{
-      'bg-[#ff0000] text-white': activeMenu === 'activities'
-    }" (click)="setActive('activities')">
-                <div class="flex-shrink-0 my-1.5">
-                    
-                    <img *ngIf="activeMenu !== 'activities'" src="activities.png" class="h-6 w-6 block"
-                        alt="activities" />
-                    
-                    <img *ngIf="activeMenu === 'activities'" src="whiteactivities.png" class="h-6 w-6 block"
-                        alt="activities Active" />
-                </div>
-                <div class="hidden lg:block my-1.5">Activities</div>
-            </div>
-
-            <!-- Reports -->
-            <div class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
-                [ngClass]="{
-      'bg-[#ff0000] text-white': activeMenu === 'reports'
-    }" (click)="setActive('reports')">
-                <div class="flex-shrink-0 my-1.5">
-                    
-                    <img *ngIf="activeMenu !== 'reports'" src="reports.png" class="h-6 w-6 block" alt="reports" />
-                    
-                    <img *ngIf="activeMenu === 'reports'" src="whitereports.png" class="h-6 w-6 block"
-                        alt="reports Active" />
-                </div>
-                <div class="hidden lg:block my-1.5">Reports</div>
-            </div>
-
-        </div>
-
+<div
+  class="main_side min-h-screen h-full w-20 md:w-24 lg:w-64 xl:w-72 p-3 md:p-4 lg:p-5 shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+>
+  <div>
+    <div class="hidden lg:block text-black text-2xl font-semibold text-center mt-5">
+      Welcome Sanju!
     </div>
 
+    <div class="lg:hidden text-black text-2xl font-bold text-center mt-2">S</div>
+
+    <div class="flex flex-col gap-2 p-2 lg:p-4 mt-5 lg:mt-8">
+      <div
+        routerLink="/dashboard"
+        routerLinkActive="bg-[#ff0000] text-white"
+        class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
+      >
+        <img src="dashboard.png" class="h-6 w-6" alt="Dashboard" />
+        <span class="hidden lg:block">Dashboard</span>
+      </div>
+
+      <!-- Leads -->
+      <div
+        routerLink="/leads"
+        routerLinkActive="bg-[#ff0000] text-white"
+        class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
+      >
+        <img src="leads.png" class="h-6 w-6" />
+        <span class="hidden lg:block">Leads</span>
+      </div>
+
+      <!-- Customers -->
+      <div
+        routerLink="/customers"
+        routerLinkActive="bg-[#ff0000] text-white"
+        class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
+      >
+        <img src="customers.png" class="h-6 w-6" alt="Customers" />
+        <span class="hidden lg:block">Customers</span>
+      </div>
+
+      <!-- Activities -->
+      <div
+        routerLink="/activities"
+        routerLinkActive="bg-[#ff0000] text-white"
+        class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
+      >
+        <img src="activities.png" class="h-6 w-6" alt="Activities" />
+        <span class="hidden lg:block">Activities</span>
+      </div>
+
+      <!-- Reports -->
+      <div
+        routerLink="/reports"
+        routerLinkActive="bg-[#ff0000] text-white"
+        class="flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-4 lg:py-2 rounded-full cursor-pointer transition hover:bg-[#FF4D4D] hover:text-white"
+      >
+        <img src="reports.png" class="h-6 w-6" alt="Reports" />
+        <span class="hidden lg:block">Reports</span>
+      </div>
+    </div>
+  </div>
 </div>
