@@ -1,9 +1,73 @@
 <div class="wrapper">
-    <div class="container">
-        <div class="header">
-            <div>
-                <h1>Add Leades</h1>
-            </div>
-        </div>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Add Lead</h1>
     </div>
+
+    <!-- Form -->
+    <form #leadForm="ngForm" (ngSubmit)="saveLead()">
+
+      <div class="form-group">
+        <label>Lead Name</label>
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="lead.name"
+          required
+          placeholder="Enter lead name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="lead.email"
+          required
+          placeholder="Enter email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Mobile</label>
+        <input
+          type="text"
+          name="mobile"
+          [(ngModel)]="lead.mobile"
+          required
+          placeholder="Enter mobile number"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Notes</label>
+        <textarea
+          name="notes"
+          [(ngModel)]="lead.notes"
+          placeholder="Notes"
+        ></textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button type="button" class="btn back" (click)="goBack()">
+          Back
+        </button>
+
+        <div class="right-actions">
+          <button type="reset" class="btn clear" (click)="clearForm()">
+            Clear
+          </button>
+          <button type="submit" class="btn save" [disabled]="leadForm.invalid">
+            Save
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
 </div>
