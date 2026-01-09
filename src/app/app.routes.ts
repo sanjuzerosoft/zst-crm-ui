@@ -5,6 +5,7 @@ import {Header} from './header/header';
 import {Sidebar} from './sidebar/sidebar';
 import {Layout} from './layout/layout';
 import { Leadslist } from './leads/leadslist/leadslist';
+import { Leadsadd } from './leads/leadsadd/leadsadd';
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'layout', component: Layout },
   { path: 'leadslist', component: Leadslist },
+  { path: 'leadsadd', component: Leadsadd },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login' }
 ];
