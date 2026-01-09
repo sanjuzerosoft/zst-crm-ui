@@ -35,7 +35,7 @@ export class Register {
       return;
     }
 
-    this.router.navigate(['/login']);
+    alert('Registration successful: ' + this.fullName);
     
   }
 
