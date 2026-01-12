@@ -3,7 +3,9 @@
     <div class="header">
       <!-- Page Header -->
       <div>
-        <div class="page-title">Leads List - <span class="count">({{ totalLeads }})</span></div>
+        <div class="page-title">
+          Leads List - <span class="count">({{ totalLeads }})</span>
+        </div>
       </div>
 
       <!-- Toolbar -->
@@ -11,7 +13,13 @@
         <div class="toolbar">
           <div class="search-box">
             <img src="search.png" alt="Search" class="search-icon" />
-            <input type="text" placeholder="Search leads..." />
+            <!-- <input type="text" placeholder="Search leads..." /> -->
+            <input
+              type="text"
+              placeholder="Search leads..."
+              [(ngModel)]="searchText"
+              (input)="onSearch()"
+            />
           </div>
 
           <button class="add-btn" (click)="AddLeads()">
@@ -31,7 +39,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Status</th>
+            <th>Notes</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -42,16 +50,9 @@
             <td>{{ lead.name }}</td>
             <td>{{ lead.email }}</td>
             <td>{{ lead.phone }}</td>
-            <td>
-              <span class="status active">{{ lead.status }}</span>
-            </td>
+            <td>{{ lead.notes }}</td>
             <td class="actions">
-              <img
-                src="edit.png"
-                alt="Edit"
-                class="action-icon"
-                (click)="editLead(lead.id)"
-              />
+              <img src="edit.png" alt="Edit" class="action-icon" (click)="editLead(lead.id)" />
               <img
                 src="delete.png"
                 alt="Delete"

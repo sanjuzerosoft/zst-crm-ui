@@ -1,31 +1,56 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Header } from '../../header/header';
+import { HttpClient,  } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-leadslist',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule,FormsModule],
   templateUrl: './leadslist.html',
   styleUrl: './leadslist.css',
 })
-export class Leadslist {
+export class Leadslist implements OnInit {
 
-  leads = [
-  { id: 1, name: 'Juan Carlos Rojas', email: 'juan@mail.com', phone: '9876543210', status: 'Active' },
-  { id: 2, name: 'María Fernanda Quispe', email: 'maria@mail.com', phone: '9123456780', status: 'Active' },
-  { id: 3, name: 'Luis Alberto Huamán', email: 'luis@mail.com', phone: '9988776655', status: 'Active' },
-  { id: 4, name: 'Rosa Elena Chávez', email: 'rosa@mail.com', phone: '9876501234', status: 'Active' },
-  { id: 5, name: 'José Antonio Flores', email: 'jose@mail.com', phone: '9090909090', status: 'Active' },
-  { id: 6, name: 'Carmen Lucía Paredes', email: 'carmen@mail.com', phone: '9887766554', status: 'Active' },
-  { id: 7, name: 'Miguel Ángel Salazar', email: 'miguel@mail.com', phone: '9876123456', status: 'Active' },
-  { id: 8, name: 'Ana Sofía Cárdenas', email: 'ana@mail.com', phone: '9797979797', status: 'Active' },
-  { id: 9, name: 'Pedro Manuel Torres', email: 'pedro@mail.com', phone: '9666555444', status: 'Active' },
-  { id: 10, name: 'Valeria Jiménez', email: 'valeria@mail.com', phone: '9555666777', status: 'Active' }
-];
+  leads: any[] = [];
+  allLeads: any[] = [];   // backup list
+  searchText: string = '';  //search input
 
+  constructor(private router: Router, private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
+  ngOnInit() {
+    this.http.get<any[]>('http://127.0.0.1:8000/api/get_leads')
+      .subscribe({
+        next: (data) => {
+          this.leads = data;
+          this.allLeads = data;
+          console.log('Leads:', this.leads);
+          this.cdr.detectChanges();
+        },
+        error: (error) => {
+          console.error('Error fetching leads:', error);
+        }
+      });
+  }
 
+  onSearch() {
+    const value = this.searchText.toLowerCase();
+
+    this.leads = this.allLeads.filter(lead =>
+      lead.name.toLowerCase().includes(value) ||
+      lead.email.toLowerCase().includes(value) ||
+      lead.phone.toLowerCase().includes(value)
+    );
+  }
+
+  get totalLeads(): number {
+    return this.leads.length;
+  }
+
+  AddLeads() {
+    this.router.navigate(['/leads/add']);
+  }
 
   editLead(id: number) {
     console.log('Edit lead:', id);
@@ -34,16 +59,4 @@ export class Leadslist {
   deleteLead(id: number) {
     console.log('Delete lead:', id);
   }
-
-  get totalLeads(): number {
-  return this.leads.length;
-}
-
-
-
-
-  constructor(private router: Router) {}
-  AddLeads() {
-  this.router.navigate(['/leads/add']);
-}
 }

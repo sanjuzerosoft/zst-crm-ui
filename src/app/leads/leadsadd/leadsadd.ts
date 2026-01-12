@@ -2,40 +2,87 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-leadsadd',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './leadsadd.html',
   styleUrl: './leadsadd.css',
 })
 export class Leadsadd {
 
   lead = {
-    name: '',
-    email: '',
+    first_name: '',
+    last_name: '',
+    lead_assignee: '',
+    lead_status: '',
     mobile: '',
-    notes: ''
+    email: '',
+    company_name: '',
+    industry_type: '',
+    lead_source: '',
+    website: '',
+    street: '',
+    city: '',
+    state: '',
+    country: '',
+    zip_code: '',
+    description: '',
   };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
-  saveLead() {
-    console.log('Lead saved:', this.lead);
+  // saveLead() {
+  //   const apiUrl = 'http://127.0.0.1:8000/api/post_leads';
 
-    // Later: send to API
-    // this.http.post('/api/leads', this.lead)
+  //   console.log('Submitting lead:', this.lead);
 
+  //   this.http.post(apiUrl, this.lead).subscribe({
+  //     next: (response) => {
+  //       console.log('Lead saved successfully:', response);
+  //       this.router.navigate(['/leads']);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error saving lead:', error);
+  //     }
+  //   });
+  // }
+  async saveLead() {
+  const apiUrl = 'http://127.0.0.1:8000/api/post_leads';
+  try {
+    const response = await firstValueFrom(this.http.post(apiUrl, this.lead));
+    console.log('Lead saved successfully:', response);
     this.router.navigate(['/leads']);
+  } catch (error) {
+    console.error('Error saving lead:', error);
+    console.log('Lead saved error:', this.lead);
   }
+}
 
   clearForm() {
     this.lead = {
-      name: '',
-      email: '',
+      first_name: '',
+      last_name: '',
+      lead_assignee: '',
+      lead_status: '',
       mobile: '',
-      notes: ''
+      email: '',
+      company_name: '',
+      industry_type: '',
+      lead_source: '',
+      website: '',
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      zip_code: '',
+      description: '',
     };
   }
 

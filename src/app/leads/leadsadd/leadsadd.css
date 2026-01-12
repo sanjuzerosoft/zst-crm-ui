@@ -1,5 +1,5 @@
 .wrapper {
-  min-height: 100vh; /* FIXED (was 100hv) */
+  min-height: 100vh;
   background-color: #f5f7fa;
   padding: 20px;
 }
@@ -8,32 +8,61 @@
   background-color: white;
   padding: 24px;
   margin: auto;
-  max-width: 600px;
+  max-width: 900px; /* IMPORTANT for 2 columns */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
+.form-layout {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.header-container {
+  margin-bottom: 24px;
+}
+.left-container{  
+  width: 100%;
+}
+.right-container{
+  width: 100%;
+}
 /* Header */
 .header {
   margin-bottom: 20px;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 24px;
+/* Card */
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.card-title {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
 /* Form */
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
 }
 
 .form-group label {
   font-size: 14px;
   margin-bottom: 6px;
-  color: #333;
 }
 
 .form-group input,
@@ -44,16 +73,14 @@
   font-size: 14px;
 }
 
-.form-group textarea {
-  resize: vertical;
-  min-height: 80px;
+textarea {
+  min-height: 90px;
 }
 
 /* Actions */
 .form-actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-top: 24px;
 }
 
@@ -68,7 +95,6 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-weight: 500;
 }
 
 .btn.back {
@@ -85,6 +111,11 @@
 }
 
 .btn.save:disabled {
-  background-color: #FF4D4D;
+  background-color: #ff4d4d;
   cursor: not-allowed;
+}
+@media (max-width: 900px) {
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
 }
