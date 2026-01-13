@@ -1,26 +1,60 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient,  } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-leadslist',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './leadslist.html',
   styleUrl: './leadslist.css',
 })
 export class Leadslist implements OnInit {
-
   leads: any[] = [];
-  allLeads: any[] = [];   // backup list
-  searchText: string = '';  //search input
+  allLeads: any[] = []; // backup list
+  searchText: string = ''; //search input
+  showDeletePopup = false;
+  selectedLeadId: number | null = null;
+
+  openDeletePopup(id: number) {
+    this.selectedLeadId = id;
+    this.showDeletePopup = true;
+  }
+
+  closeDeletePopup() {
+    this.showDeletePopup = false;
+    this.selectedLeadId = null;
+  }
+
+  confirmDelete() {
+    if (this.selectedLeadId !== null) {
+      this.deleteLead(this.selectedLeadId);
+    }
+    this.closeDeletePopup();
+  }
 
   constructor(private router: Router, private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
-    this.http.get<any[]>('http://127.0.0.1:8000/api/get_leads')
+  getLeads() {
+    const token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3ZlcmlmeS1vdHAiLCJpYXQiOjE3NjgyODQzNjMsImV4cCI6MTc2ODI4Nzk2MywibmJmIjoxNzY4Mjg0MzYzLCJqdGkiOiJLcGlNSGtIcVcyS3V4NGw0Iiwic3ViIjoiOSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.CMa8vmWMHdQGaMvzZxu2UHzLTc9UEQhS03jNU8eGckY';
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    console.log('header', headers);
+    this.http
+      .get<any[]>('http://127.0.0.1:8000/api/leads', { headers })
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching leads:', error);
+          return throwError(() => error);
+        })
+      )
       .subscribe({
         next: (data) => {
           this.leads = data;
@@ -30,17 +64,22 @@ export class Leadslist implements OnInit {
         },
         error: (error) => {
           console.error('Error fetching leads:', error);
-        }
+        },
       });
+  }
+
+  ngOnInit() {
+    this.getLeads();
   }
 
   onSearch() {
     const value = this.searchText.toLowerCase();
 
-    this.leads = this.allLeads.filter(lead =>
-      lead.name.toLowerCase().includes(value) ||
-      lead.email.toLowerCase().includes(value) ||
-      lead.phone.toLowerCase().includes(value)
+    this.leads = this.allLeads.filter(
+      (lead) =>
+        lead.name.toLowerCase().includes(value) ||
+        lead.email.toLowerCase().includes(value) ||
+        lead.phone.toLowerCase().includes(value)
     );
   }
 
@@ -54,9 +93,31 @@ export class Leadslist implements OnInit {
 
   editLead(id: number) {
     console.log('Edit lead:', id);
+    this.router.navigate(['/leads/view', [id]]);
   }
 
   deleteLead(id: number) {
-    console.log('Delete lead:', id);
+    console.log('Deleting lead:', id);
+    const token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3ZlcmlmeS1vdHAiLCJpYXQiOjE3NjgyODQzNjMsImV4cCI6MTc2ODI4Nzk2MywibmJmIjoxNzY4Mjg0MzYzLCJqdGkiOiJLcGlNSGtIcVcyS3V4NGw0Iiwic3ViIjoiOSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.CMa8vmWMHdQGaMvzZxu2UHzLTc9UEQhS03jNU8eGckY';
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    // Example API call
+    this.http
+      .delete(`http://127.0.0.1:8000/api/leads/${id}`, { headers })
+      .pipe(
+        catchError((error) => {
+          console.error('Delete failed:', error);
+          alert('Unauthorized or failed request');
+          return throwError(() => error);
+        })
+      )
+      .subscribe(() => {
+        this.getLeads();
+        this.leads = this.leads.filter((l) => l.id !== id);
+        this.allLeads = this.allLeads.filter((l) => l.id !== id);
+      });
   }
 }

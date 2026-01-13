@@ -41,7 +41,7 @@ export class Leadsadd {
 
   async saveLead() {
     const apiUrl = 'http://127.0.0.1:8000/api/post_leads';
-    
+    console.log('Lead saved successfully:', this.lead);
     try {
       const response = await firstValueFrom(this.http.post(apiUrl, this.lead));
       console.log('Lead saved successfully:', response);

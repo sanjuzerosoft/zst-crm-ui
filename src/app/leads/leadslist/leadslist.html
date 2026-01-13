@@ -14,7 +14,12 @@
           <div class="search-box">
             <img src="search.png" alt="Search" class="search-icon" />
             <!-- <input type="text" placeholder="Search leads..." /> -->
-            <input type="text" placeholder="Search leads..." [(ngModel)]="searchText" (input)="onSearch()" />
+            <input
+              type="text"
+              placeholder="Search leads..."
+              [(ngModel)]="searchText"
+              (input)="onSearch()"
+            />
           </div>
 
           <button class="add-btn" (click)="AddLeads()">
@@ -41,7 +46,6 @@
 
         <tbody>
           <tr *ngFor="let lead of leads" routerLink="/leads/view" class="clickable-row">
-
             <td>{{ lead.id }}</td>
             <td>{{ lead.name }}</td>
             <td>{{ lead.email }}</td>
@@ -49,16 +53,28 @@
             <td>{{ lead.notes }}</td>
 
             <td class="actions">
-              <img src="edit.png" class="action-icon" />
-              <img src="delete.png" class="action-icon delete" />
+              <img src="edit.png" class="action-icon" (click)="editLead(lead.id)" />
+              <!-- <img src="delete.png" class="action-icon delete" (click)="deleteLead(lead.id)" /> -->
+              <img
+                src="delete.png"
+                class="action-icon delete"
+                (click)="openDeletePopup(lead.id); $event.stopPropagation()"
+              />
             </td>
-
           </tr>
         </tbody>
-
       </table>
+      <div class="modal-backdrop" *ngIf="showDeletePopup">
+        <div class="modal">
+          <h3>Confirm Delete</h3>
+          <p>Are you sure you want to delete this lead?</p>
+
+          <div class="modal-actions">
+            <button class="btn cancel" (click)="closeDeletePopup()">No</button>
+            <button class="btn delete" (click)="confirmDelete()">Yes</button>
+          </div>
+        </div>
+      </div>
     </div>
-
-
   </div>
 </div>
