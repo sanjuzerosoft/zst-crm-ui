@@ -25,6 +25,7 @@ export class Leadsadd {
     industry_type: '',
     lead_source: '',
     website: '',
+    door_no: '',
     street: '',
     city: '',
     state: '',
@@ -38,32 +39,19 @@ export class Leadsadd {
     private http: HttpClient
   ) {}
 
-  // saveLead() {
-  //   const apiUrl = 'http://127.0.0.1:8000/api/post_leads';
-
-  //   console.log('Submitting lead:', this.lead);
-
-  //   this.http.post(apiUrl, this.lead).subscribe({
-  //     next: (response) => {
-  //       console.log('Lead saved successfully:', response);
-  //       this.router.navigate(['/leads']);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error saving lead:', error);
-  //     }
-  //   });
-  // }
   async saveLead() {
-  const apiUrl = 'http://127.0.0.1:8000/api/post_leads';
-  try {
-    const response = await firstValueFrom(this.http.post(apiUrl, this.lead));
-    console.log('Lead saved successfully:', response);
-    this.router.navigate(['/leads']);
-  } catch (error) {
-    console.error('Error saving lead:', error);
-    console.log('Lead saved error:', this.lead);
+    const apiUrl = 'http://127.0.0.1:8000/api/post_leads';
+    
+    try {
+      const response = await firstValueFrom(this.http.post(apiUrl, this.lead));
+      console.log('Lead saved successfully:', response);
+      this.router.navigate(['/leads']);
+    } catch (error) {
+      console.error('Error saving lead:', error);
+      // Optionally show user-friendly error message
+      alert('Failed to save lead. Please try again.');
+    }
   }
-}
 
   clearForm() {
     this.lead = {
@@ -77,6 +65,7 @@ export class Leadsadd {
       industry_type: '',
       lead_source: '',
       website: '',
+      door_no: '',
       street: '',
       city: '',
       state: '',

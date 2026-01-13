@@ -5,8 +5,10 @@ import { Layout } from './layout/layout';
 import { Dashboard } from './dashboard/dashboard';
 import { Leadslist } from './leads/leadslist/leadslist';
 import { Leadsadd } from './leads/leadsadd/leadsadd';
+import { Leadsview } from './leads/leadsview/leadsview';
 import { Customerslist } from './customers/customerslist/customerslist';
 import { Customersadd } from './customers/customersadd/customersadd';
+import { Customersview } from './customers/customersview/customersview';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'leads', pathMatch: 'full' },
@@ -20,8 +22,10 @@ export const routes: Routes = [
       {path: 'dashboard', component: Dashboard },
       { path: 'leads', component: Leadslist },
       { path: 'leads/add', component: Leadsadd },
+      { path: 'leads/view', component: Leadsview },
       { path: 'customers', component: Customerslist },
       { path: 'customers/add', component: Customersadd },
+      { path: 'customers/view', component: Customersview },
       
     ]
   },

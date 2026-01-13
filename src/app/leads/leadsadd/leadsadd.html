@@ -4,22 +4,22 @@
     <div class="header">
       <h1>Add Lead</h1>
     </div>
-  </div>
-
-  <!-- FORM -->
-  <form #leadForm="ngForm" (ngSubmit)="saveLead()">
-    <!-- ACTIONS -->
+    
+    <!-- ACTIONS BELOW HEADER -->
     <div class="form-actions">
       <button type="button" class="btn back" (click)="goBack()">Back</button>
-
+      
       <div class="right-actions">
         <button type="button" class="btn clear" (click)="clearForm()">Clear</button>
-        <button type="submit" class="btn save" [disabled]="leadForm.invalid">
+        <button type="submit" form="leadForm" class="btn save" [disabled]="leadForm.invalid">
           Save
         </button>
       </div>
     </div>
+  </div>
 
+  <!-- FORM -->
+  <form id="leadForm" #leadForm="ngForm" (ngSubmit)="saveLead()">
     <!-- TWO COLUMN LAYOUT -->
     <div class="form-layout">
       <!-- LEFT -->
@@ -79,12 +79,10 @@
         <h3 class="card-title">Address</h3>
 
         <div class="grid-2">
-
           <div class="form-group">
             <label>Door No</label>
-            <input type="text" name="street" [(ngModel)]="lead.street" />
+            <input type="text" name="door_no" [(ngModel)]="lead.door_no" />
           </div>
-
 
           <div class="form-group">
             <label>Street</label>
