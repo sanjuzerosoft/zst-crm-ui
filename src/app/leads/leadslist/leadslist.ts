@@ -42,7 +42,7 @@ export class Leadslist implements OnInit {
 
   getLeads() {
     const token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3ZlcmlmeS1vdHAiLCJpYXQiOjE3NjgzMDI4NTQsImV4cCI6MTc2ODMwNjQ1NCwibmJmIjoxNzY4MzAyODU0LCJqdGkiOiI4d1pSbkVuWDh3RTkxcktBIiwic3ViIjoiOSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.rqfyjI2Dy45vhpipUrY-GqbOX2QTZF4jGwZ76khp2O4';
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3ZlcmlmeS1vdHAiLCJpYXQiOjE3NjgzNjkxMjUsImV4cCI6MTc2ODM3MjcyNSwibmJmIjoxNzY4MzY5MTI1LCJqdGkiOiJDeEJRbkVobHR5UGpIWFNBIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.fx3Cf1GtzM7jylScJ6mrxmLuZp9WhV3WmWyNwROuaGg';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
@@ -93,7 +93,7 @@ export class Leadslist implements OnInit {
 
   editLead(id: number) {
     console.log('Edit lead:', id);
-    this.router.navigate(['/leads/view', [id]]);
+    // this.router.navigate(['/leads/view', [id]]);
   }
 
   

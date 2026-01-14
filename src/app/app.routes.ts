@@ -26,7 +26,8 @@ export const routes: Routes = [
       { path: 'leads/view/:id', component: Leadsview },
       { path: 'customers', component: Customerslist },
       { path: 'customers/add', component: Customersadd },
-      { path: 'customers/view', component: Customersview },
+      { path: 'customers/add/:id', component: Customersadd },
+      { path: 'customers/view/:id', component: Customersview },
       
     ]
   },
